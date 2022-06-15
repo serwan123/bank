@@ -1,0 +1,14 @@
+To run:
+1. Copy .env.example to .env
+2. docker-compose up -d --build
+4. cd app
+3. composer install
+4. in docker php bin/console doctrine:migrations:migrate
+5. in docker php bin/console doctrine:fixtures:load
+    The accounts with the numbers 34238498439000890034645374, 57238238439000890034346226 and 27275495439000890023433463 will be saved in the database.
+    To add wallet: [POST] /api/wallet {'accountNumber': accountNumber}
+    To get wallet balance: [GET] /api/wallet/{id} {'accountNumber': accountNumber}
+    To add amount: [POST] /api/operation/add {"walletId": id, "value": amount}
+    To substract amount: [POST] /api/operation/substract {"walletId": id, "value": amount}
+    To generate operations history on wallet: in docker php bin/console wallet:history-csv {wallet ID} The csv file will be saved in app/csv
+
