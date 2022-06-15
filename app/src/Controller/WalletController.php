@@ -48,7 +48,9 @@ class WalletController extends AbstractController
     public function balance($id)
     {
         $wallet = $this->walletRepository->find($id);
-        //if($wallet)
+        if(is_null($wallet)) {
+           return new JsonResponse(['message' => 'Invalid wallet ID!'], Response::HTTP_BAD_REQUEST); 
+        }
         $data = ['id' => $wallet->getId(), 'accountId' => $wallet->getAccount()->getId(), 'balance' => $wallet->getSum()/100];
         
         return new JsonResponse($data, Response::HTTP_OK);
